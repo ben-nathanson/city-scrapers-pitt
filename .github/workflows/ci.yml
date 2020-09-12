@@ -34,17 +34,8 @@ jobs:
       env:
         PIPENV_DEFAULT_PYTHON_VERSION: ${{ matrix.python-version }}
 
-    - name: Check imports with isort
-      run: pipenv run isort . --check --diff || exit 1
-
-    - name: Check style with yapf
-      run: pipenv run yapf --diff --recursive ./city_scrapers/ ./tests/ || exit 1
-
-    - name: Lint with flake8
-      run: pipenv run flake8
-
-    - name: Test with pytest
-      run: pipenv run pytest
+    - name: Test Scrapy
+      run: pipenv run scrapy list
 
     - name: Validate output with scrapy
       if: github.event_name == 'pull_request'
